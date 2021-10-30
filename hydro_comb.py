@@ -22,8 +22,8 @@ pca_df = pd.DataFrame(pca)
 
 
 # Original Data
-colored_line_and_scatter_plot(pca_df[0], y=pca_df[1], output_directory=output_directory, imgname=(
-    system_name + "_Distances_noMW_scatterline"))
+colored_line_and_scatter_plot(pca_df[0], pca_df[1], pca_df[2], output_directory=output_directory, imgname=(
+    system_name + "hydrogen"))
 
 
 '''
