@@ -171,7 +171,7 @@ def colored_line_plot(x, y, z=None, x2=None, y2=None, z2=None, imgname=None, sam
 def colored_line_plot_projected_data(x, y, new_data_x=None, new_data_y=None, z=None, new_data_z=None, x2=None, y2=None,
                                      z2=None, imgname=None, lengths=None, new_data=None, output_directory=None,
                                      points_to_circle=None, points_to_circle_new_data=None, same_axis=False):
-
+    # sollte
     # Create figure
     fig = plt.figure(figsize=(10, 5))
     gs = GridSpec(1, 2)
@@ -265,11 +265,12 @@ def colored_line_plot_projected_data(x, y, new_data_x=None, new_data_y=None, z=N
             yrange_ = y.max() - y.min()
             ax0.set_xlim([x.min() - 0.1 * xrange_, x.max() + 0.1 * xrange_])
             ax0.set_ylim([y.min() - 0.1 * yrange_, y.max() + 0.1 * yrange_])
-
+    print(len(new_data_x))
     # Adding new_data, if it exists
+    # EDIT k=0 rausgenommen
     if new_data_x is not None and new_data_y is not None:
         tck_new, u_new = interpolate.splprep(
-            [new_data_x, new_data_y], k=1, s=0.0)
+            [new_data_x, new_data_y], s=0.0)
         x_i_new, y_i_new = interpolate.splev(np.linspace(0, 1, 1000), tck_new)
 
         # Gradient color change magic
