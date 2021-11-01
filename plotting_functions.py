@@ -267,7 +267,7 @@ def colored_line_plot_projected_data(x, y, new_data_x=None, new_data_y=None, z=N
             ax0.set_ylim([y.min() - 0.1 * yrange_, y.max() + 0.1 * yrange_])
 
     # Adding new_data, if it exists
-    # EDIT k=0 rausgenommen
+    # EDIT k=1 rausgenommen für bifurcation
     if new_data_x is not None and new_data_y is not None:
         tck_new, u_new = interpolate.splprep(
             [new_data_x, new_data_y], s=0.0)
