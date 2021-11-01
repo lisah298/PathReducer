@@ -779,16 +779,18 @@ def transform_new_data_cartesians(new_xyz_file_path, output_directory, n_dim, pc
     coords_for_analysis = np.reshape(coords_for_analysis, (coords_for_analysis.shape[0],
                                                            coords_for_analysis.shape[1] *
                                                            coords_for_analysis.shape[2]))
-
+    # applies dimensionality reduction on aligned coords with fit from training data
     components = pca_fit.transform(coords_for_analysis)
     components_df = pd.DataFrame(components)
-
+    # writes PC'S in arrays
     PCs_separate = []
     for i in range(0, n_dim):
         PCi = np.dot(components[:, i, None],
                      pca_components[None, i, :]) + pca_mean
         PCs_separate.append(PCi)
 
+    print(PCs_separate)
+    print(np.shape(PCs_separate))
     PCs_combined = np.dot(components, pca_components) + pca_mean
 
     PCs_separate = np.array(PCs_separate)
