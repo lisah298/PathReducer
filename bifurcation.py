@@ -30,7 +30,7 @@ new_data_df1 = dim_red.transform_new_data(new_file1, direc1 + "/new_data", ndim,
 # new_data_df4 = dim_red.transform_new_data(new_file4, direc1 + "/new_data", ndim, D_pca_fit, D_pca_components, D_mean,
 #                                          aligned_original_coords, stereo_atoms=stereo_atoms_B, input_type="Distances")[1]
 
-print(len(new_data_df1[0]))
+
 # Plotting
 
 # DISTANCES INPUT

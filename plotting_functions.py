@@ -265,7 +265,7 @@ def colored_line_plot_projected_data(x, y, new_data_x=None, new_data_y=None, z=N
             yrange_ = y.max() - y.min()
             ax0.set_xlim([x.min() - 0.1 * xrange_, x.max() + 0.1 * xrange_])
             ax0.set_ylim([y.min() - 0.1 * yrange_, y.max() + 0.1 * yrange_])
-    print(len(new_data_x))
+
     # Adding new_data, if it exists
     # EDIT k=0 rausgenommen
     if new_data_x is not None and new_data_y is not None:
