@@ -486,6 +486,66 @@ def colored_line_plot_projected_data(x, y, new_data_x=None, new_data_y=None, z=N
         plt.close()
 
 
+def colored_line_plot_projected_data2(x, y, new_data_x=None, new_data_y=None, z=None, new_data_z=None, x2=None, y2=None,
+                                      z2=None, imgname=None, lengths=None, new_data=None, output_directory=None,
+                                      points_to_circle=None, points_to_circle_new_data=None, same_axis=False):
+    # sollte
+    # Create figure
+    fig = plt.figure(figsize=(10, 5))
+    gs = GridSpec(1, 2)
+    ax0 = fig.add_subplot(gs[0])
+    ax0.grid(True)
+
+    ax0.set_xlabel('PC1', fontsize=16)
+    ax0.set_ylabel('PC2', fontsize=16)
+    ax0.tick_params(axis='both', labelsize=12)
+    ax0.scatter(x, y)
+
+    # Adding new_data, if it exists
+
+    if z is not None:
+        # Do 3D plot
+
+        ax1 = fig.add_subplot(gs[1], projection='3d')
+
+        ax1.set_xlabel('PC1', fontsize=16, labelpad=9)
+        ax1.set_ylabel('PC2', fontsize=16, labelpad=7)
+        ax1.set_zlabel('PC3', fontsize=16, labelpad=7)
+        ax1.tick_params(axis='both', labelsize=12)  # , pad=5)
+        ax1.ticklabel_format(style='sci', scilimits=(-3, 3))
+        # ax1.set_title('Top Three Principal Components', fontsize=18, fontstyle='italic')
+        ax1.w_xaxis.set_pane_color((1.0, 1.0, 1.0, 1.0))
+        ax1.dist = 9
+        ax1.scatter(x, y, z)
+
+        # Setting axis limits
+
+    # Adding new_data, if it exists
+
+    if points_to_circle_new_data is not None:
+        for i in points_to_circle_new_data:
+            # , edgecolors='k', facecolors='none', s=200, zorder=5, linewidth=1.5)
+            ax0.scatter(new_data_x[i], new_data_y[i], zorder=5,
+                        edgecolors='k', marker="$\u263c$", s=200)
+            if new_data_z is not None:
+                # , edgecolors='k', facecolors='none', s=200, zorder=5, linewidth=1.5)
+                ax1.scatter(new_data_x[i], new_data_y[i], new_data_z[i])
+    else:
+        ax1.scatter(new_data_x, new_data_y, new_data_z)
+        ax0.scatter(new_data_x, new_data_y)
+
+    fig.tight_layout(pad=5)
+    fig.subplots_adjust(top=0.88, wspace=0.2)
+
+    if imgname is None:
+        plt.show()
+
+    else:
+        # plt.savefig(os.path.join(output_directory, imgname + ".png"), dpi=600, bbox_inches='tight')
+        plt.savefig(os.path.join(output_directory, imgname + ".pdf"))
+        plt.close()
+
+
 def colored_line_and_scatter_plot(x, y=None, y1=None, x2=None, y2=None, y12=None, imgname=None, same_axis=False, lengths=None, new_data=None,
                                   output_directory=None, points_to_circle=None, mark_first_last=False):
     """
