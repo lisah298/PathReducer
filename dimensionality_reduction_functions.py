@@ -789,8 +789,6 @@ def transform_new_data_cartesians(new_xyz_file_path, output_directory, n_dim, pc
                      pca_components[None, i, :]) + pca_mean
         PCs_separate.append(PCi)
 
-    print(PCs_separate)
-    print(np.shape(PCs_separate))
     PCs_combined = np.dot(components, pca_components) + pca_mean
 
     PCs_separate = np.array(PCs_separate)
@@ -1116,7 +1114,6 @@ def pathreducer_cartesians_one_file(xyz_file_path, n_dim, mw=False, reconstruct=
     # PCA
     cartesians_pca, cartesians_pca_fit, cartesians_components, cartesians_mean, cartesians_values = \
         pca_dr(matrix_for_pca)
-    print("(2) matrix_for_pca:" + str(np.shape(matrix_for_pca)))
     print("\n(2) Done with PCA of Cartesian coordinates!")
 
     if reconstruct:
